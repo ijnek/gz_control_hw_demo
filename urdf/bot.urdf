@@ -22,6 +22,21 @@
       <geometry>
         <box size="0.05 0.05 0.50"/>
       </geometry>
+      <material name="Red">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.50"/>
+      </geometry>
       <material name="Blue">
         <color rgba="0.0 0.0 1.0 1.0"/>
       </material>
@@ -44,6 +59,13 @@
     <axis xyz="1.0 0.0 0.0"/>
     <limit lower="-1.0" upper="1.0" effort="10.0" velocity="10.0"/>
   </joint>
+  <joint name="joint2" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0.0 0.0 0.5"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit lower="-1.0" upper="1.0" effort="10.0" velocity="10.0"/>
+  </joint>
 
   <!-- Fix world by using the gazebo static tag -->
   <gazebo reference="world">
@@ -55,8 +77,15 @@
     <plugin
       filename="libignition-gazebo-joint-position-controller-system"
       name="ignition::gazebo::systems::JointPositionController">
-      <topic>joint_positions/joint1</topic>
       <joint_name>joint1</joint_name>
+      <p_gain>10</p_gain>
+      <i_gain>1</i_gain>
+      <d_gain>1</d_gain>
+    </plugin>
+    <plugin
+      filename="libignition-gazebo-joint-position-controller-system"
+      name="ignition::gazebo::systems::JointPositionController">
+      <joint_name>joint2</joint_name>
       <p_gain>10</p_gain>
       <i_gain>1</i_gain>
       <d_gain>1</d_gain>
@@ -67,8 +96,13 @@
   <ros2_control name="Bot" type="system">
     <hardware>
       <plugin>gz_control_hw/GzHw</plugin>
+      <param name="robot_name">bot</param>
     </hardware>
     <joint name="joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="joint2">
       <command_interface name="position"/>
       <state_interface name="position"/>
     </joint>
