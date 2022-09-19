@@ -29,9 +29,7 @@ def generate_launch_description():
     create_node = Node(
         package='ros_ign_gazebo',
         executable='create',
-        arguments=[
-            '-topic', 'robot_description',
-            '-z', '0.10'])
+        arguments=['-topic', 'robot_description'])
 
     # Joint State Bridge
     bridge = Node(
