@@ -92,6 +92,24 @@
       <i_gain>1</i_gain>
       <d_gain>1</d_gain>
     </plugin>
+    <!-- Joint Controller for joint1 -->
+    <!-- <plugin
+      filename="libignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>joint1</joint_name>
+      <p_gain>10</p_gain>
+      <i_gain>1</i_gain>
+      <d_gain>1</d_gain>
+    </plugin> -->
+    <!-- Joint Controller for joint2 -->
+    <!-- <plugin
+      filename="libignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>joint2</joint_name>
+      <p_gain>10</p_gain>
+      <i_gain>1</i_gain>
+      <d_gain>1</d_gain>
+    </plugin> -->
     <!-- Joint State Publisher -->
     <plugin
         filename="libignition-gazebo-joint-state-publisher-system.so"
@@ -111,11 +129,17 @@
     </hardware>
     <joint name="joint1">
       <command_interface name="position"/>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
     </joint>
     <joint name="joint2">
       <command_interface name="position"/>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
     </joint>
   </ros2_control>
 </robot>
