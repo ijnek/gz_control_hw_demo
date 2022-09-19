@@ -1,0 +1,5 @@
+repositories:
+  gz_control_hw:
+    type: git
+    url: https://github.com/ijnek/gz_control_hw.git
+    version: rolling
