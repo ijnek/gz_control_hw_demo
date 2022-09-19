@@ -64,7 +64,7 @@
   </gazebo>
 
   <!-- ROS2 Control -->
-  <ros2_control name="Quasor" type="system">
+  <ros2_control name="Bot" type="system">
     <hardware>
       <plugin>gz_control_hw/GzHw</plugin>
     </hardware>

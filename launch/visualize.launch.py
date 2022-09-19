@@ -7,7 +7,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
-    # Run xacro to convert quasor.xacro to a string containing the robot description
+    # Run xacro to convert bot.urdf to a string containing the robot description
     xacro_path = PathJoinSubstitution(
         [FindPackageShare('gz_control_hw_demo'), 'urdf', 'bot.urdf'])
 

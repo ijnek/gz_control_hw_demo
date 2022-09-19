@@ -25,7 +25,7 @@ def generate_launch_description():
             'ign_args': LaunchConfiguration('world'),
         }.items())
 
-    # Create Quasor model
+    # Create model
     create_node = Node(
         package='ros_ign_gazebo',
         executable='create',
@@ -46,7 +46,7 @@ def generate_launch_description():
     )
 
     # Robot State Publisher
-    # Run xacro to convert quasor.xacro to a string containing the robot description
+    # Run xacro to convert bot.urdf to a string containing the robot description
     xacro_path = PathJoinSubstitution(
         [FindPackageShare('gz_control_hw_demo'), 'urdf', 'bot.urdf'])
     robot_state_publisher_node = Node(
