@@ -26,10 +26,13 @@ def generate_launch_description():
         }.items())
 
     # Create model
+    # Run xacro to convert bot.urdf to a string containing the robot description
+    xacro_path = PathJoinSubstitution(
+        [FindPackageShare('gz_control_hw_demo'), 'urdf', 'bot.urdf'])
     create_node = Node(
         package='ros_ign_gazebo',
         executable='create',
-        arguments=['-topic', 'robot_description'])
+        arguments=['-string', Command(['xacro ', xacro_path])])
 
     # Joint State Bridge
     bridge = Node(
@@ -38,25 +41,12 @@ def generate_launch_description():
         arguments=[
                 # Clock (IGN -> ROS2)
                 '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-                # Joint states (IGN -> ROS2)
-                'joint_states@sensor_msgs/msg/JointState[ignition.msgs.Model',
                 ],
-    )
-
-    # Robot State Publisher
-    # Run xacro to convert bot.urdf to a string containing the robot description
-    xacro_path = PathJoinSubstitution(
-        [FindPackageShare('gz_control_hw_demo'), 'urdf', 'bot.urdf'])
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'robot_description': ParameterValue(Command(['xacro ', xacro_path]))}]
     )
 
     return LaunchDescription([
         world_arg,
         gazebo,
         create_node,
-        bridge,
-        robot_state_publisher_node,
+        # bridge,
     ])

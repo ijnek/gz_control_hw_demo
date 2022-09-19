@@ -20,6 +20,12 @@ def generate_launch_description():
         parameters=[
             {'robot_description': ParameterValue(Command(['xacro ', xacro_path]))},
             controller_config],
+
+    # Spawn joint_state_broadcaster
+    spawn_joint_state_broadcaster = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
     )
 
     # Spawn joint_group_position_controller
@@ -31,5 +37,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         controller_manager_node,
+        spawn_joint_state_broadcaster,
         spawn_joint_group_position_controller,
     ])

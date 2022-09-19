@@ -74,6 +74,7 @@
 
   <!-- Gazebo Plugins -->
   <gazebo>
+    <!-- Joint Position Controller for joint1 -->
     <plugin
       filename="libignition-gazebo-joint-position-controller-system"
       name="ignition::gazebo::systems::JointPositionController">
@@ -82,6 +83,7 @@
       <i_gain>1</i_gain>
       <d_gain>1</d_gain>
     </plugin>
+    <!-- Joint Position Controller for joint2 -->
     <plugin
       filename="libignition-gazebo-joint-position-controller-system"
       name="ignition::gazebo::systems::JointPositionController">
@@ -90,6 +92,14 @@
       <i_gain>1</i_gain>
       <d_gain>1</d_gain>
     </plugin>
+    <!-- Joint State Publisher -->
+    <plugin
+        filename="libignition-gazebo-joint-state-publisher-system.so"
+        name="ignition::gazebo::systems::JointStatePublisher">
+      <topic>joint_states</topic>
+      <joint_name>joint1</joint_name>
+      <joint_name>joint2</joint_name>
+    </plugin>
   </gazebo>
 
   <!-- ROS2 Control -->
@@ -97,6 +107,7 @@
     <hardware>
       <plugin>gz_control_hw/GzHw</plugin>
       <param name="robot_name">bot</param>
+      <param name="joint_states_ign_topic">joint_states</param>
     </hardware>
     <joint name="joint1">
       <command_interface name="position"/>
