@@ -20,18 +20,18 @@ joint_group_position_controller:
       - joint1
       - joint2
 
-joint_group_velocity_controller:
-  ros__parameters:
-    joints:
-      - joint1
-      - joint2
+# joint_group_velocity_controller:
+#   ros__parameters:
+#     joints:
+#       - joint1
+#       - joint2
 
-joint_trajectory_controller:
-  ros__parameters:
-    joints:
-      - joint1
-      - joint2
-    command_interfaces:
-      - position
-    state_interfaces:
-      - position
+# joint_trajectory_controller:
+#   ros__parameters:
+#     joints:
+#       - joint1
+#       - joint2
+#     command_interfaces:
+#       - position
+#     state_interfaces:
+#       - position
