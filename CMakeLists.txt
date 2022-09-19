@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(gz_control_hw REQUIRED)
 
 install(
-  DIRECTORY launch rviz urdf
+  DIRECTORY launch rviz urdf worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
