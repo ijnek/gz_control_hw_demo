@@ -97,18 +97,12 @@
       filename="libignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
       <joint_name>joint1</joint_name>
-      <p_gain>10</p_gain>
-      <i_gain>1</i_gain>
-      <d_gain>1</d_gain>
     </plugin> -->
     <!-- Joint Controller for joint2 -->
     <!-- <plugin
       filename="libignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
       <joint_name>joint2</joint_name>
-      <p_gain>10</p_gain>
-      <i_gain>1</i_gain>
-      <d_gain>1</d_gain>
     </plugin> -->
     <!-- Joint State Publisher -->
     <plugin
